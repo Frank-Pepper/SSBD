@@ -1,0 +1,26 @@
+{$DOMAIN} {
+    log {
+        output file /var/log/caddy/access.log
+    }
+
+    @backend path /api/*
+
+    handle @backend {
+        reverse_proxy backend1:8080 backend2:8080 {
+            lb_policy round_robin
+            # lb_policy ip_hash
+
+            lb_retries 2
+            fail_duration 10s
+
+            health_uri /api/actuator/health
+            health_interval 5s
+            health_timeout 2s
+            health_status 2xx
+        }
+    }
+
+    handle {
+        reverse_proxy front:80
+    }
+}
