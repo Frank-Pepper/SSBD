@@ -7,7 +7,7 @@
 ![infrastrucutre diagram](/assets/infra.png "infrastrucutre diagram")
 
 ## Reverse proxy configuration
-### $DOMAIN is eviroment variable provided in docker compose
+### $DOMAIN is an eviroment variable provided in docker compose
 ```
 {$DOMAIN} {
     log {
