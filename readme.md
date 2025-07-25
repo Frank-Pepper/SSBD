@@ -1,10 +1,10 @@
 # SSBD infrastructure 
 
-## The site is available at: [https://team-3.proj-sum.it.p.lodz.pl](https://team-3.proj-sum.it.p.lodz.pl)
+## The site ~~is~~ was available at: [https://team-3.proj-sum.it.p.lodz.pl](https://team-3.proj-sum.it.p.lodz.pl)
  
 
 ## Infrastrucutre Diagram
-![infrastrucutre diagram](/assets/infra.png "infrastrucutre diagram")
+![infrastrucutre diagram](/assets/infra-grafana.png "infrastrucutre diagram")
 
 ## Reverse proxy configuration
 ### $DOMAIN is an eviroment variable provided in docker compose
@@ -28,6 +28,10 @@
             health_timeout 2s
             health_status 2xx
         }
+    }
+
+    handle /grafana* {
+        reverse_proxy grafana:3000
     }
 
     handle {
